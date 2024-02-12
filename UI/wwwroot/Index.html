@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <link href="css/site.css" rel="stylesheet"
+          type="text/css">
+    <link href="css/list.css" rel="stylesheet"
+          type="text/css">
+
+    <script type="text/javascript" src="js/site.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="title">
+            Тестовое задание
+        </div>
+    </div>
+    <div class="container">
+        <div class="sidebar">
+
+
+            <div class="title">
+                Список файлов
+            </div>
+
+            <div class="list-container">
+                <ol class="rectangle" id="ElementList">
+                </ol>
+            </div>
+
+            <div class="butn">
+                <input id="load" type="file" value="Загрузить изображение" placeholder="Загрузить файл">
+            </div>
+
+            <div class="titleDecript">
+                Название
+            </div>
+
+            <input id="name" class="input_wrap" type="text" maxlength="50" size="10" placeholder="введите новое название " />
+
+            <div class="titleDecript">
+                Описание
+            </div>
+            <textarea id="descript" class="input_wrap" name="Text1" rows="5" placeholder="Введите изменения"></textarea>
+
+            <div class="ButnContainer">
+                <button id="save">
+                    Сохранить изменения
+                </button>
+
+                <button id="del">
+                    Удалить
+                </button>
+            </div>
+
+
+        </div>
+
+        <div class="content">
+            <img id="Image" src="" />
+        </div>
+    </div>
+</body>
+</html>

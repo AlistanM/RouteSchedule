@@ -5,6 +5,8 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouteSchedule", "RouteSchedule\RouteSchedule.csproj", "{87EE19F9-D962-4C41-B089-C148A47E56A4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{2A8E0096-1070-471A-9E5A-E449B22EE818}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{87EE19F9-D962-4C41-B089-C148A47E56A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87EE19F9-D962-4C41-B089-C148A47E56A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87EE19F9-D962-4C41-B089-C148A47E56A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A8E0096-1070-471A-9E5A-E449B22EE818}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A8E0096-1070-471A-9E5A-E449B22EE818}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A8E0096-1070-471A-9E5A-E449B22EE818}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A8E0096-1070-471A-9E5A-E449B22EE818}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
