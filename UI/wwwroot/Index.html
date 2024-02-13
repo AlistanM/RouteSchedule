@@ -9,6 +9,7 @@
           type="text/css">
 
     <script type="text/javascript" src="js/site.js"></script>
+    <script type="text/javascript" src="js/config.js"></script>
 </head>
 <body>
     <div class="header">
@@ -21,44 +22,30 @@
 
 
             <div class="title">
-                Список файлов
+                Справочники
             </div>
 
             <div class="list-container">
-                <ol class="rectangle" id="ElementList">
-                </ol>
-            </div>
+                <div class="ButnContainer">
+                    <button id="cars">
+                        Машины
+                    </button>
 
-            <div class="butn">
-                <input id="load" type="file" value="Загрузить изображение" placeholder="Загрузить файл">
-            </div>
+                    <button id="drivers">
+                        Водители
+                    </button>
 
-            <div class="titleDecript">
-                Название
-            </div>
-
-            <input id="name" class="input_wrap" type="text" maxlength="50" size="10" placeholder="введите новое название " />
-
-            <div class="titleDecript">
-                Описание
-            </div>
-            <textarea id="descript" class="input_wrap" name="Text1" rows="5" placeholder="Введите изменения"></textarea>
-
-            <div class="ButnContainer">
-                <button id="save">
-                    Сохранить изменения
-                </button>
-
-                <button id="del">
-                    Удалить
-                </button>
+                    <button id="crews">
+                        Экипажи
+                    </button>
+                </div>
             </div>
 
 
         </div>
 
-        <div class="content">
-            <img id="Image" src="" />
+        <div id="info" class="content" style="text-align:center">
+            
         </div>
     </div>
 </body>

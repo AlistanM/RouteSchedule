@@ -21,5 +21,10 @@ namespace RouteSchedule.Sql.Models
         {
             return new Car { Id = dto.Id, Name = dto.Name, LoadСapacity = dto.LoadСapacity };
         }
+
+        public CarDto ToApi()
+        {
+            return new CarDto { Id = Id, Name = Name, LoadСapacity = LoadСapacity };
+        }
     }
 }

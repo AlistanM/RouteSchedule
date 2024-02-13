@@ -1,0 +1,1 @@
+﻿let apiUrl = 'https://localhost:7168'

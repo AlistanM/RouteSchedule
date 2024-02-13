@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using RouteSchedule.ApiModels;
 using RouteSchedule.Migrations;
 using RouteSchedule.Sql;
@@ -12,7 +13,7 @@ namespace RouteSchedule.Controllers
     {
         [Route("CreateCar")]
         [HttpPost]
-        public async Task CreateCar([FromServices] DataContext db, [FromBody]CarDto dto)
+        public async Task CreateCar([FromServices] DataContext db, [FromBody] CarDto dto)
         {
             var car = Car.FromApi(dto);
             db.Cars.Add(car);
@@ -32,7 +33,7 @@ namespace RouteSchedule.Controllers
 
         [Route("DeleteCar")]
         [HttpGet]
-        public async Task DeleteCar([FromServices] DataContext db, [FromQuery]int id)
+        public async Task DeleteCar([FromServices] DataContext db, [FromQuery] int id)
         {
             var car = new Car { Id = id };
             db.Attach(car);
@@ -40,5 +41,11 @@ namespace RouteSchedule.Controllers
             await db.SaveChangesAsync();
         }
 
+        [Route("GetCars")]
+        [HttpGet]
+        public async Task<CarDto[]> GetCars([FromServices] DataContext db)
+        {
+            return (await db.Cars.ToListAsync()).Select(x => x.ToApi()).ToArray();
+        }
     }
 }

@@ -51,7 +51,7 @@
     }
 
 .list-container {
-    max-height: 800px;
+    max-height: 1000px;
     border: 7px solid rgb(55, 55, 55);
     background-color: rgb(120, 120, 120);
 }
@@ -59,7 +59,7 @@
 ol {
     text-align: center;
     width: 90%;
-    height: 40vh;
+    height: 80vh;
     overflow-y: auto;
 }
 

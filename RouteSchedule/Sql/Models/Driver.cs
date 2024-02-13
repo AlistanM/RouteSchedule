@@ -18,5 +18,10 @@ namespace RouteSchedule.Sql.Models
         {
             return new Driver { Id = dto.Id, Name = dto.Name };   
         }
+
+        public DriverDto ToApi()
+        {
+            return new DriverDto { Id = Id, Name = Name};
+        }
     }
 }

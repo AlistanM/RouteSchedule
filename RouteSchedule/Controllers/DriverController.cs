@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using RouteSchedule.ApiModels;
 using RouteSchedule.Sql;
 using RouteSchedule.Sql.Models;
@@ -38,6 +39,13 @@ namespace RouteSchedule.Controllers
             db.Attach(driver); 
             db.Remove(driver);
             await db.SaveChangesAsync();
+        }
+
+        [Route("GetDrivers")]
+        [HttpGet]
+        public async Task<DriverDto[]> GetDrivers([FromServices] DataContext db)
+        {
+            return (await db.Drivers.ToListAsync()).Select(x => x.ToApi()).ToArray();
         }
     }
 }
