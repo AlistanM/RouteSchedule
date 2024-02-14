@@ -17,40 +17,71 @@ function initEvent() {
 
     popup = document.getElementById("popup")
     close = document.getElementById("close")
-    change = document.getElementById("change")
     close.addEventListener('click', function (event) {
 
         closePopup(popup)
     })
-
+    change = document.getElementById("change")
     change.addEventListener('click', function (event) {
 
         saveChanges()
     })
+
+    add = document.getElementById("addBtn")
+    add.addEventListener('click', function (event) {
+
+        addElement(popup, tableName)
+    })
 }
 
 
-function openPopup(popup, id, controllerName) {
-    div = document.getElementById("popup-info")
-    buttons = document.getElementById("buttons")
-    url = `${apiUrl}/${controllerName}/Get?id=${id}`
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            obj = JSON.parse(this.responseText)
-            table = createPopup(obj)
+function openPopup(popup, id, controllerName, event) {
+    if (event == "Create") {
+        div = document.getElementById("popup-info")
+        buttons = document.getElementById("buttons")
+        url = `${apiUrl}/${controllerName}/GetSignature`
 
-            div.insertBefore(table, buttons)
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                obj = JSON.parse(this.responseText)
+                table = createAddPopup(obj)
+
+                div.insertBefore(table, buttons)
+            }
         }
+        xmlhttp.open("GET", url, true);
+        xmlhttp.setRequestHeader("Access-Control-Allow-Origin", apiUrl)
+        xmlhttp.setRequestHeader("Access-Control-Allow-Methods", "DELETE, POST, GET, OPTIONS")
+        xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With")
+        xmlhttp.send();
+
+
+        popup.classList.add("show")
     }
-    xmlhttp.open("GET", url, true);
-    xmlhttp.setRequestHeader("Access-Control-Allow-Origin", apiUrl)
-    xmlhttp.setRequestHeader("Access-Control-Allow-Methods", "DELETE, POST, GET, OPTIONS")
-    xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With")
-    xmlhttp.send();
+
+    if (event == "Change") {
+        div = document.getElementById("popup-info")
+        buttons = document.getElementById("buttons")
+        url = `${apiUrl}/${controllerName}/Get?id=${id}`
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                obj = JSON.parse(this.responseText)
+                table = createPopup(obj)
+
+                div.insertBefore(table, buttons)
+            }
+        }
+        xmlhttp.open("GET", url, true);
+        xmlhttp.setRequestHeader("Access-Control-Allow-Origin", apiUrl)
+        xmlhttp.setRequestHeader("Access-Control-Allow-Methods", "DELETE, POST, GET, OPTIONS")
+        xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With")
+        xmlhttp.send();
 
 
-    popup.classList.add("show")
+        popup.classList.add("show")
+    }
 }
 
 function deleteObj(id, controllerName) {
@@ -99,14 +130,6 @@ function openCars() {
                 h = document.createElement("h1")
                 h.innerHTML = "Нет информации о машинах"
                 div.appendChild(h)
-
-                btn = document.createElement("button")
-                btn.setAttribute("name", tableName)
-                btn.innerText = "Добавить"
-                btn.addEventListener('click', function (event) {
-                    addElement(this.name)
-                })
-                div.appendChild(btn)
             }
         }
     }
@@ -118,25 +141,13 @@ function openCars() {
     xmlhttp.send();
 }
 
-function addElement(name) {
-    url = `${apiUrl}/${name}/Create`
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            if (name == "Cars")
-                openCars()
-            if (name == "Drivers")
-                openDrivers()
-            if (name == "Crews")
-                openCrews()
-        }
+function addElement(popup, name) {
+    if (name.length == 0) {
+        alert("Не выбран справочник")
     }
-    xmlhttp.open("GET", url, true);
-
-    xmlhttp.setRequestHeader("Access-Control-Allow-Origin", apiUrl)
-    xmlhttp.setRequestHeader("Access-Control-Allow-Methods", "DELETE, POST, GET, OPTIONS")
-    xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With")
-    xmlhttp.send();
+    else {
+        openPopup(popup, 0, name, "Create")
+    }
 }
 
 function openDrivers() {
@@ -194,7 +205,7 @@ function createTable(obj, name) {
         td.innerHTML = `<button name="${name}" id="${obj[i]["id"]}" class="open popup-button">Изменить</button>`
         btn = td.querySelector('button')
         btn.addEventListener('click', function (event) {
-            openPopup(popup, this.id, this.name)
+            openPopup(popup, this.id, this.name, "Change")
         })
         tr.appendChild(td)
 
@@ -239,6 +250,25 @@ function createPopup(obj) {
     return table;
 }
 
+function createAddPopup(keys) {
+    table = document.createElement("table");
+    table.setAttribute('id', 'objInfo');
+    console.log(table.id);
+    tr = document.createElement("tr");
+    table.appendChild(tr)
+
+    for (i = 0; i < keys.length; i++) {
+        td = document.createElement("td")
+        td.innerHTML = `<h1>${keys[i]}</h1>`;
+        tr.appendChild(td)
+    }
+
+    tr = createFields(obj);
+    table.appendChild(tr);
+
+    return table;
+}
+
 function createFields(obj) {
     let keys = Object.keys(obj);
     tr = document.createElement("tr")
@@ -251,6 +281,14 @@ function createFields(obj) {
     }
 
     return tr;
+}
+
+function saveChanges(keys, tablename) {
+
+    dict = {}
+    for (i = 0; i < keys; i++) {
+
+    }
 }
 
 var selectedid = null

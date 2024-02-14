@@ -61,5 +61,12 @@ namespace RouteSchedule.Controllers
         {
             return (await _db.Drivers.FirstOrDefaultAsync(x => x.Id == id)).ToApi();
         }
+
+        [Route("GetSignature")]
+        [HttpGet]
+        public List<string> GetSignature()
+        {
+            return typeof(DriverDto).GetProperties().Select(x => x.Name).ToList();
+        }
     }
 }

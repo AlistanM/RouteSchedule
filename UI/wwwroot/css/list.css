@@ -54,6 +54,7 @@
     max-height: 1000px;
     border: 7px solid rgb(55, 55, 55);
     background-color: rgb(120, 120, 120);
+    position: relative;
 }
 
 ol {
